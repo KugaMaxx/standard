@@ -7,9 +7,9 @@
 ```
 <type> <block>
 ---
-* <subject>:
+* <subject>: (<description>)
     + <details> 
-* <subject>:
+* <subject>: (<description>)
     + <details>
 ```
 其中`<type>`表示此次更新的主题/类别，`<block>`表示修改的函数、文件或影响的范围，`<subject>`表示修改的文件位置，`<details>`表示修改细节。一个简单的示例如下
@@ -17,9 +17,13 @@
 ```
 Add `say_hello()`
 ---
-* src/hello.py:
+* src/__init__.py: a description can be inserted here
+
+* src/hello.py: a function to print "hello, world"
     + line 1119 to 1121: add `say_hello()`
     + line  231 to  255: remove `say_bye()`
+    + line  211 to  213: restyle `say_no()`
+
 * src/utils.py:
     + line    2 to    3: revised import of some load function and delete some
                             trash lines to make more easy to follow
