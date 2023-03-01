@@ -8,9 +8,9 @@
 <type> <block>
 ---
 * <subject>:
-    <details>
+    + <details> 
 * <subject>:
-    <details>
+    + <details>
 ```
 其中`<type>`表示此次更新的主题/类别，`<block>`表示修改的函数、文件或影响的范围，`<subject>`表示修改的文件位置，`<details>`表示修改细节。一个简单的示例如下
 
@@ -18,9 +18,12 @@
 Add `say_hello()`
 ---
 * src/hello.py:
-    line 1119 to 1121: add `say_hello` function
+    + line 1119 to 1121: add `say_hello()`
+    + line  231 to  255: remove `say_bye()`
 * src/utils.py:
-    line    2 to    3: revised import
+    + line    2 to    3: revised import of some load function and delete some
+                            trash lines to make more easy to follow
+    + line   13 to   24: do not delete this
 ```
 
 ### Type
@@ -55,4 +58,4 @@ Add `say_hello()`
 
 ### Subjet & Details
 
-`<subject>` 是修改的具体位置，`<details>`是该文件夹下的具体修改细节。这两个部分特别详细要求，有必要的时候进行说明即可，标注行号等一般以修改后的结果为准。缩进一般取4格为准
+`<subject>` 是修改的具体位置。`<details>`是该文件夹下的具体修改细节，段首4个缩进，标注行号后一般只接60个字符，然后换行并加上4字缩进，行号一般以修改后的结果为准。
