@@ -5,36 +5,43 @@
 每次提交的commit应该遵循以下形式
 
 ```
-<type> <block>
+[<type>]: <block>
 ---
 * <subject>: (<description>)
     + <details> 
 * <subject>: (<description>)
     + <details>
 ```
-其中`<type>`表示此次更新的主题/类别，`<block>`表示修改的函数、文件或影响的范围，`<subject>`表示修改的文件位置，`<details>`表示修改细节。一个简单的示例如下
+其中`<type>`表示此次更新的主题/类别，`<block>`表示修改的函数、文件的原因，`<subject>`表示修改的文件位置，`<details>`表示修改细节。一个简单的示例如下
 
 ```
-Add `say_hello()`
+[Feat]: add `say_hello()`
 ---
 * src/__init__.py: a description can be inserted here
 
 * src/hello.py: a function to print "hello, world"
-    + line 1119 to 1121: add `say_hello()`
-    + line  231 to  255: remove `say_bye()`
-    + line  211 to  213: restyle `say_no()`
+    + line   58 to   68: add `say_hello()` to welcome
+    + line  123 to  156: remove `say_bye()` when shutdown
+    + line 1138 to 1164: reformat the code style
 
 * src/utils.py:
-    + line    2 to    3: revised import of some load function and delete some
-                            trash lines to make more easy to follow
-    + line   13 to   24: do not delete this
+    + line  412 to  456: revised import of some load function and delete some trash lines to make 
+    more easy to follow
+    + line  632 to  634: this line is a placeholder, do not delete this
 ```
 
 ### Type
 
 `<type>`是每次commit的最重要部分，需要首字母大写，仅限于从下面中选择此次更新的种类
 
-+ `Initial` 第一次创建一个**库**
++ `mst` 迭代到最新**版本**
++ `docs` 创建或修复**文档**
++ `feat` 新增**函数**或**功能**
++ `fix` 修复**错误**
++ `style` 重构代码**风格**或**结构**
++ `chore` 无法分类的**杂项**
+
+<!-- + `Initial` 第一次创建一个**库**
 + `Release` 将**库**进行一次大版本更新
 + `Revert` 将**库**回退到上一个版本
 + `Update` 更新**文字文档**
@@ -45,7 +52,7 @@ Add `say_hello()`
 + `Improve` 优化**代码**或**函数**的性能
 + `Refactor` 修改**文件夹**的结构分布
 + `Fix` 修复影响程序运行的**问题**
-+ `Close` 关闭某个相关的**问题**
++ `Close` 关闭某个相关的**问题** -->
 
 ### Block
 
