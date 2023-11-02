@@ -2,32 +2,78 @@
 
 ## Commit
 
-每次提交的commit应该遵循以下形式
+参考[标准commit规范](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)，每次提交的commit应该遵循以下形式
 
 ```
-[<type>]: <block>
+<type>($<scope>): <summary>
+
 ---
-* <subject>: (<description>)
-    + <details> 
-* <subject>: (<description>)
-    + <details>
-```
-其中`<type>`表示此次更新的主题/类别，`<block>`表示修改的函数、文件的原因，`<subject>`表示修改的文件位置，`<details>`表示修改细节。一个简单的示例如下
+<details>
 
-```
-[Feat]: add `say_hello()`
+  - <subject>: (<description>)
+    * <modification> 
+
+  - <subject>: (<description>)
+    * <modification>
+
 ---
-* src/__init__.py: a description can be inserted here
+<footer>
+```
 
-* src/hello.py: a function to print "hello, world"
-    + line   58 to   68: add `say_hello()` to welcome
-    + line  123 to  156: remove `say_bye()` when shutdown
-    + line 1138 to 1164: reformat the code style
+其中`<type>`表示此次更新的主题/类别，`<scope>`表示此次更新的范围，`<summary>`表示此次更新的简短描述，`<details>`表示此次更新的详细细节。一个简单的示例如下
 
-* src/utils.py:
-    + line  412 to  456: revised import of some load function and delete some trash lines to make 
-    more easy to follow
-    + line  632 to  634: this line is a placeholder, do not delete this
+```
+feat($main): add `say_hello()`
+
+---
+More detailed explanatory text, if necessary. Wrap it to about 80 characters 
+or so. In some contexts, the first line is treated as the subject of the 
+commit and the rest of the text as the body. The dash line separating 
+the summary from the body is critical (unless you omit the body entirely); 
+various tools like `log`, `shortlog` and `rebase` can get confused if you run
+the two together.
+
+Further paragraphs come after blank lines.
+
+  - src/__init__.py: a description can be inserted here
+
+  - src/hello.py: a function to print "hello, world"
+    * line   58 to   68: add `say_hello()` to welcome
+    * line  123 to  156: remove `say_bye()` when shutdown
+    * line 1138 to 1164: reformat the code style
+
+  - src/utils.py:
+    * line  412 to  456: revised import of some load function and delete some 
+    trash lines to make more easy to follow
+    * line  632 to  634: this line is a placeholder, do not delete this
+
+---
+BREAKING CHANGE: isolate scope bindings definition has changed.
+
+  To migrate the code follow the example below:
+
+  - Before:
+
+    scope: {
+      myAttr: 'attribute',
+      myBind: 'bind',
+      myExpression: 'expression',
+      myEval: 'evaluate',
+      myAccessor: 'accessor'
+    }
+
+  - After:
+
+    scope: {
+      myAttr: '@',
+      myBind: '@',
+      myExpression: '&'
+    }
+
+  The removed `inject` wasn't generaly useful for directives so there should be no code using it.
+
+Resolves: #123
+See also: #456, #789
 ```
 
 ### Type
@@ -35,28 +81,28 @@
 `<type>`是每次commit的最重要部分，需要首字母大写，仅限于从下面中选择此次更新的种类
 
 + `mst` 迭代到最新**版本**
-+ `docs` 创建或修复**文档**
-+ `feat` 新增**函数**或**功能**
 + `fix` 修复**错误**
-+ `style` 重构代码**风格**或**结构**
++ `feat` 新增**函数**或**功能**
++ `docs` 创建或修复**文档**
++ `style` 重构代码**风格**
++ `refactor` 重构代码**结构**
++ `perf` 提升项目**性能**
++ `test` 增加项目**测试**
 + `chore` 无法分类的**杂项**
 
-<!-- + `Initial` 第一次创建一个**库**
-+ `Release` 将**库**进行一次大版本更新
-+ `Revert` 将**库**回退到上一个版本
-+ `Update` 更新**文字文档**
-+ `Add` 增加**代码**或**函数**或**参数**
-+ `Remove` 删除**代码**或**函数**或**参数**
-+ `Move` 移动**代码**或**函数**或**参数**
-+ `Modify` 修改**代码**或**函数**或**参数**
-+ `Improve` 优化**代码**或**函数**的性能
-+ `Refactor` 修改**文件夹**的结构分布
-+ `Fix` 修复影响程序运行的**问题**
-+ `Close` 关闭某个相关的**问题** -->
+### Scope
 
-### Block
+`<scope>`用于说明 commit 影响的范围，比如可视化、文件读写、样例或问题等。
++ `$` 抽象的**功能**或**模块**
++ `&` 具体的**文件**或**类**
++ `%` 引入项目外的**功能**
++ `#` 解决的**问题**
++ `!` 重要或破坏性的**更改**
++ `*` **无法归类**的提交
 
-`<block>`中填写操作的目标类型，大致分为
+### Summary
+
+`<summary>`中如果出现了被操作目标的具体类型，需要按照如下标识区分类型
 
 + `repo` 库，在第一次引用和大型更新时用到，用v+版本号表示
 + `docs` 文字文档，包括README.md和其它文档（如yaml或html等），注明扩展名即可
